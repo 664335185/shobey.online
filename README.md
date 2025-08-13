@@ -1,1 +1,516 @@
-https://www.shobey.online/
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minecraft Mobile - Final Edition</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg-dark: #0B0D17;
+      --card-bg: #151829;
+      --accent-green: #5FD068;
+      --accent-green-light: #7DFF9D;
+      --text-primary: #FFFFFF;
+      --text-secondary: #AAB1C5;
+      --font-body: 'Inter', sans-serif;
+      --title-gradient: linear-gradient(45deg, var(--accent-green-light), var(--accent-green));
+      --footer-gradient: linear-gradient(90deg, var(--text-secondary), var(--text-primary));
+    }
+    
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      display: grid;
+      place-items: center;
+      padding: 40px 16px;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 450px;
+      text-align: center;
+    }
+    
+    .game-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+    }
+    
+    .title {
+      font-size: 2.3rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+      background: var(--title-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .stats {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      font-weight: 500;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+    
+    .stats .rating {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      color: var(--text-primary);
+    }
+    
+    .stats .rating i {
+      color: #FFC93D;
+      font-size: 1rem;
+      text-shadow: 0 0 6px #ffc93d50;
+    }
+    
+    .stats .score {
+      margin-left: 8px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .top-description {
+      color: var(--text-secondary);
+      margin: 24px 0;
+      line-height: 1.6;
+      font-size: 0.95rem;
+      padding: 0 10px;
+    }
+    
+    .info-tags {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      margin: 24px 0;
+      gap: 10px;
+      text-align: center;
+    }
+
+    .tag {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      min-width: 80px;
+      line-height: 1.2;
+    }
+
+    .icon-label {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+    }
+
+    .icon-label i {
+      color: var(--accent-green);
+      font-size: 1rem;
+    }
+
+    .subtext {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+    
+    .actions-wrapper {
+      margin-top: 20px;
+    }
+    
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      background: var(--accent-green);
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 10px rgba(95, 208, 104, 0.3);
+    }
+    
+    .btn:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
+
+    @keyframes pulse-clean {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.06);
+      }
+    }
+
+    #download-trigger {
+      animation: pulse-clean 1.4s infinite ease-in-out;
+    }
+    
+    .btn i {
+      margin-right: 10px;
+    }
+    
+    #platform-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    
+    #platform-buttons .btn {
+      flex: 1;
+      padding: 14px;
+      font-size: 1rem;
+      border-radius: 12px;
+      box-shadow: none;
+    }
+    
+    .btn-android {
+      background: linear-gradient(to bottom, #72c042, #5a9934);
+      border-bottom: 3px solid #3e6823;
+    }
+    
+    .btn-ios {
+      background: linear-gradient(to bottom, #999, #666);
+      border-bottom: 3px solid #444;
+    }
+    
+    .hidden {
+      display: none !important;
+    }
+    
+    .section {
+      background-color: var(--card-bg);
+      border-radius: 24px;
+      padding: 24px;
+      margin-top: 32px;
+      text-align: center; /* <<< APPLIED CENTERING */
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    }
+    
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      background: var(--title-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block; /* Helps with centering */
+    }
+    
+    .section-title i {
+      color: var(--accent-green);
+      margin-right: 8px;
+      -webkit-text-fill-color: initial;
+    }
+    
+    .section-text {
+      color: var(--text-secondary);
+      font-size: 0.96rem;
+      line-height: 1.7;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+    
+    .feature-item {
+      background-color: var(--bg-dark);
+      padding: 18px 12px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: inset 0 0 0 1px #2b2e42;
+    }
+    
+    .feature-item i {
+      font-size: 1.7rem;
+      color: var(--accent-green);
+      margin-bottom: 10px;
+    }
+    
+    .feature-item h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    
+    .feature-item p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    
+    .premium-features-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .premium-item {
+      background-color: var(--bg-dark);
+      padding: 14px 16px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center; /* <<< APPLIED CENTERING */
+      gap: 10px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      box-shadow: inset 0 0 0 1px #2e3144;
+    }
+    
+    .premium-item i {
+      color: var(--accent-green);
+    }
+    
+    .footer-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      margin-top: 30px;
+      border-top: 1px solid #2c2f41;
+    }
+    
+    .detail-item {
+      text-align: center;
+    }
+    
+    .detail-label, .detail-value {
+        display: block;
+    }
+    
+    .detail-label {
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      margin-bottom: 2px;
+    }
+    
+    .detail-value {
+      font-weight: 700;
+      font-size: 0.88rem;
+      background: var(--footer-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    /* --- MOBILE RESPONSIVE STYLES --- */
+    @media (max-width: 480px) {
+      body {
+        padding: 30px 16px;
+      }
+
+      .title {
+        font-size: 1.9rem;
+      }
+
+      .section-title {
+        font-size: 1.25rem;
+      }
+
+      .top-description {
+        font-size: 0.9rem;
+      }
+
+      .section {
+        padding: 20px;
+      }
+
+      .btn {
+        font-size: 1rem;
+      }
+      
+      #platform-buttons .btn {
+        font-size: 0.9rem;
+      }
+
+      /* Adjustments to force multi-column layout on mobile */
+      .features-grid {
+        gap: 8px;
+      }
+      .feature-item {
+        padding: 12px 8px;
+      }
+      .feature-item h3 {
+        font-size: 0.75rem;
+      }
+      .feature-item p {
+        font-size: 0.7rem;
+        line-height: 1.3;
+      }
+      .feature-item i {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+      }
+      .premium-features-list {
+        gap: 10px;
+      }
+      .premium-item {
+        background-color: var(--bg-dark);
+        padding: 10px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        flex-direction: column;
+        font-size: 0.8rem;
+        font-weight: 500;
+        line-height: 1.3;
+        text-align: center;
+        box-shadow: inset 0 0 0 1px #2e3144;
+        min-width: 120px; 
+        max-width: 140px; 
+        word-break: break-word; 
+      }
+    }
+  </style>
+  
+</head>
+<body>
+  <main class="container">
+    <img src="https://i.postimg.cc/ZKGMMpvL/mc.png" alt="Minecraft Game Icon" class="game-icon">
+    <h1 class="title">Minecraft Mobile</h1>
+
+    <div class="stats">
+        <span class="rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+            <span class="score">4.9</span>
+          </span>
+    <span>20M+ Downloads</span>
+    </div>
+
+    <div class="actions-wrapper">
+      <button id="download-trigger" class="btn">
+        <i class="fas fa-download"></i> Download New
+      </button>
+      <div id="platform-buttons" class="hidden">
+        <a href="https://installchecker.com/cl/v/99g7ow" class="btn btn-android"><i class="fab fa-android"></i> Android</a>
+        <a href="https://installchecker.com/cl/v/99g7ow" class="btn btn-ios"><i class="fab fa-apple"></i> iOS</a>
+      </div>
+    </div>
+
+    <p class="top-description">
+      Unlock the ultimate sandbox with premium features. Get unlimited resources, all skins, and an ad-f.ree experience in this enhanced Minecraft version.
+    </p>
+
+    <div class="info-tags">
+        <div class="tag">
+          <div class="icon-label">
+            <i class="fas fa-shield-halved"></i>
+            <span>Safe &amp;</span>
+          </div>
+          <div class="subtext">Secure</div>
+        </div>
+        <div class="tag">
+          <div class="icon-label">
+            <i class="fas fa-bolt"></i>
+            <span>Fast</span>
+          </div>
+          <div class="subtext">Install</div>
+        </div>
+        <div class="tag">
+          <div class="icon-label">
+            <i class="fas fa-users"></i>
+            <span>Large</span>
+          </div>
+          <div class="subtext">Community</div>
+        </div>
+      </div>
+      
+      
+
+    <div class="section">
+      <h2 class="section-title">About Minecraft Premium</h2>
+      <p class="section-text">
+        This version of Minecraft provides the ultimate creative and survival experience. Build anything you can imagine with unlimited blocks, explore vast worlds without restrictions, and and enjoy exclusive Premium features not found anywhere else.
+      </p>
+      <div class="features-grid">
+        <div class="feature-item">
+          <i class="fas fa-shield-heart"></i>
+          <h3>Enhanced Survival</h3>
+          <p>New mobs, biomes, and challenges await you</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-cubes"></i>
+          <h3>Creative Pro</h3>
+          <p>Access every block instantly, including premium-only items</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-server"></i>
+          <h3>Premium Realms</h3>
+          <p>Join exclusive servers with unique game modes and maps</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title"><i class="fas fa-star"></i>Premium Features</h2>
+      <div class="premium-features-list">
+        <div class="premium-item"><i class="fas fa-shirt"></i> All Skins Unlocked</div>
+        <div class="premium-item"><i class="fas fa-user-shield"></i> God Premium Enabled</div>
+        <div class="premium-item"><i class="fas fa-ban"></i> Ad-Free Gameplay</div>
+        <div class="premium-item"><i class="fas fa-infinity"></i> Unlimited Blocks</div>
+      </div>
+    </div>
+
+    <div class="section footer-details">
+      <div class="detail-item">
+        <span class="detail-label">Version</span>
+        <span class="detail-value">v1.21.9</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Size</span>
+        <span class="detail-value">344 MB</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Updated</span>
+        <span class="detail-value">July 2025</span>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const trigger = document.getElementById('download-trigger');
+      const buttons = document.getElementById('platform-buttons');
+      trigger.addEventListener('click', () => {
+        trigger.classList.add('hidden');
+        buttons.classList.remove('hidden');
+      });
+    });
+  </script>
+</body>
+</html>
